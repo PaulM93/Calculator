@@ -25,7 +25,7 @@ class Calculator {
       let total = +this.total;
       switch (this.operator) {
         case "+":
-          this.total = total + cur;
+          this.total = Math.round(((total + cur) * 100) / 100);
           break;
         case "-":
           this.total = total - cur;
@@ -95,6 +95,18 @@ function setDisplayText(type) {
   displayHTML.innerHTML = calculator.displayText;
   valueHTML.innerHTML = calculator.total;
 }
+
+function createTime() {
+  const date = new Date().toLocaleTimeString([], {
+    hour12: false,
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+  const timeDisplay = document.getElementById("time");
+  timeDisplay.textContent = date;
+}
+createTime();
+setInterval(createTime, 1000);
 
 //Create Calulator Buttons
 function createButtons() {
