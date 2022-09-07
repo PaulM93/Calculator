@@ -13,11 +13,7 @@ class Calculator {
   }
   handleOperator(val) {
     this.equate();
-    if (val === "AC") {
-      this.clear();
-    } else {
-      this.operator = val;
-    }
+    this.operator = val;
   }
   roundValue(val) {
     console.log(val);
@@ -85,6 +81,8 @@ function handleNumberSelect(val) {
   calculator.setDisplay(val);
   calculator.numberSelect(val);
   setDisplayText();
+  console.log(calculator.displayText.length);
+
   //   console.log(calculator);
 }
 
@@ -96,6 +94,9 @@ function handleOperatorSelect(val) {
     case "%":
       calculator.percentageNumber();
       break;
+    case "AC":
+      handleClear();
+      break;
     default:
       calculator.setDisplay(` ${val} `);
   }
@@ -103,11 +104,6 @@ function handleOperatorSelect(val) {
   calculator.handleOperator(val);
   setDisplayText();
   console.log(calculator);
-}
-
-function handleClear() {
-  calculator.clear();
-  setDisplayText();
 }
 
 function handleEquate() {
@@ -119,9 +115,28 @@ function handleEquate() {
 // //HTMl selectors
 let displayHTML = document.getElementById("displayText");
 let valueHTML = document.getElementById("value");
-function setDisplayText(type) {
+function setDisplayText() {
   displayHTML.innerHTML = calculator.displayText;
   valueHTML.innerHTML = calculator.total;
+  switch (calculator.displayText.length) {
+    case 5:
+      valueHTML.style.fontSize = "60px";
+      break;
+    case 7:
+      valueHTML.style.fontSize = "40px";
+      break;
+    case 15:
+      displayHTML.style.fontSize = "10px";
+      valueHTML.style.fontSize = "20px";
+      break;
+    default:
+      valueHTML.style.fontSize = "80px";
+  }
+}
+
+function handleClear() {
+  calculator.clear();
+  setDisplayText();
 }
 
 function createTime() {
