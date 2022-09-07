@@ -19,22 +19,41 @@ class Calculator {
       this.operator = val;
     }
   }
+  roundValue(val) {
+    console.log(val);
+    return Math.round((val * 100) / 100);
+  }
+  invertNumber() {
+    this.total *= -1;
+    this.displayText = this.total;
+  }
+  percentageNumber() {
+    this.total = this.total / 100;
+    this.displayText = this.total;
+  }
   equate() {
     if (this.currentNumber !== "") {
+      console.log("op", this.operator);
+      let calculatedVal;
       let cur = +this.currentNumber;
       let total = +this.total;
       switch (this.operator) {
         case "+":
-          this.total = Math.round(((total + cur) * 100) / 100);
+          calculatedVal = total + cur;
+          this.total = this.roundValue(calculatedVal);
           break;
-        case "-":
-          this.total = total - cur;
+        case "−":
+          calculatedVal = total - cur;
+          this.total = this.roundValue(calculatedVal);
           break;
-        case "/":
-          this.total = total / cur;
+        case "÷":
+          calculatedVal = total / cur;
+          this.total = this.roundValue(calculatedVal);
           break;
         case "x":
-          this.total = total * cur;
+          calculatedVal = total * cur;
+          this.total = this.roundValue(calculatedVal);
+          break;
       }
       this.currentNumber = "";
     }
@@ -70,11 +89,20 @@ function handleNumberSelect(val) {
 }
 
 function handleOperatorSelect(val) {
-  console.log(val);
-  calculator.setDisplay(` ${val} `);
+  switch (val) {
+    case "+/-":
+      calculator.invertNumber();
+      break;
+    case "%":
+      calculator.percentageNumber();
+      break;
+    default:
+      calculator.setDisplay(` ${val} `);
+  }
+
   calculator.handleOperator(val);
   setDisplayText();
-  //   console.log(calculator);
+  console.log(calculator);
 }
 
 function handleClear() {
@@ -112,9 +140,9 @@ setInterval(createTime, 1000);
 function createButtons() {
   const buttons = [
     { title: "AC", type: "op", pos: "top" },
-    { title: "/", type: "op", pos: "top" },
+    { title: "+/-", type: "op", pos: "top" },
     { title: "%", type: "op", pos: "top" },
-    { title: "/", type: "op", pos: "rig" },
+    { title: "÷", type: "op", pos: "rig" },
     { title: "7", type: "num", pos: "mid" },
     { title: "8", type: "num", pos: "mid" },
     { title: "9", type: "num", pos: "mid" },
@@ -122,7 +150,7 @@ function createButtons() {
     { title: "4", type: "num", pos: "mid" },
     { title: "5", type: "num", pos: "mid" },
     { title: "6", type: "num", pos: "mid" },
-    { title: "-", type: "op", pos: "rig" },
+    { title: "−", type: "op", pos: "rig" },
     { title: "1", type: "num", pos: "mid" },
     { title: "2", type: "num", pos: "mid" },
     { title: "3", type: "num", pos: "mid" },
@@ -144,7 +172,6 @@ function createButtons() {
         ? handleNumberSelect(button.title)
         : handleOperatorSelect(button.title);
     });
-    console.log(document);
     document.getElementById("topButtons").appendChild(btn);
   });
 }
