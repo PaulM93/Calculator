@@ -13,7 +13,11 @@ class Calculator {
   }
   handleOperator(val) {
     this.equate();
-    this.operator = val;
+    if (val === "AC") {
+      this.clear();
+    } else {
+      this.operator = val;
+    }
   }
   equate() {
     if (this.currentNumber !== "") {
@@ -66,6 +70,7 @@ function handleNumberSelect(val) {
 }
 
 function handleOperatorSelect(val) {
+  console.log(val);
   calculator.setDisplay(` ${val} `);
   calculator.handleOperator(val);
   setDisplayText();
@@ -91,30 +96,44 @@ function setDisplayText(type) {
   valueHTML.innerHTML = calculator.total;
 }
 
-function createOperatorButtons() {
-  const buttons = ["+", "-", "/", "x"];
-  buttons.forEach((button) => {
-    let btn = document.createElement("button");
-    btn.innerHTML = button;
-    btn.addEventListener("click", function () {
-      handleOperatorSelect(button);
-    });
-    document.getElementById("operatorBtnDiv").appendChild(btn);
-  });
-}
-createOperatorButtons();
-
 //Create Calulator Buttons
 function createButtons() {
-  const buttons = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "."];
+  const buttons = [
+    { title: "AC", type: "op", pos: "top" },
+    { title: "/", type: "op", pos: "top" },
+    { title: "%", type: "op", pos: "top" },
+    { title: "/", type: "op", pos: "rig" },
+    { title: "7", type: "num", pos: "mid" },
+    { title: "8", type: "num", pos: "mid" },
+    { title: "9", type: "num", pos: "mid" },
+    { title: "x", type: "op", pos: "rig" },
+    { title: "4", type: "num", pos: "mid" },
+    { title: "5", type: "num", pos: "mid" },
+    { title: "6", type: "num", pos: "mid" },
+    { title: "-", type: "op", pos: "rig" },
+    { title: "1", type: "num", pos: "mid" },
+    { title: "2", type: "num", pos: "mid" },
+    { title: "3", type: "num", pos: "mid" },
+    { title: "+", type: "op", pos: "rig" },
+  ];
   buttons.forEach((button) => {
     let btn = document.createElement("button");
-    btn.innerHTML = button;
-    btn.classList.add("numberButton");
+    btn.innerHTML = button.title;
+    btn.classList.add(
+      button.pos === "mid"
+        ? "numberButton"
+        : button.pos === "top"
+        ? "topButton"
+        : "rightButton"
+    );
+    // btn.classList.add("numberButton");
     btn.addEventListener("click", function () {
-      handleNumberSelect(button);
+      button.type === "num"
+        ? handleNumberSelect(button.title)
+        : handleOperatorSelect(button.title);
     });
-    document.getElementById("numberBtnDiv").appendChild(btn);
+    console.log(document);
+    document.getElementById("topButtons").appendChild(btn);
   });
 }
 createButtons();
