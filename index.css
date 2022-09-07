@@ -1,11 +1,17 @@
 body {
     /* background-image: url("./bulbasor.png"); */
-    background-image: url("./iphone.png");
-    /* background-size:100% 100%; */
+    background-image: url("./iphonebg.png");
+    font-family: 'Roboto', sans-serif;
     background-position: center;
     height: 100vh;
     width: auto;
     /* background-color: blue; */
+}
+
+p{
+    padding: 0;
+    margin: 0;
+    color: white;
 }
 
 
@@ -35,7 +41,27 @@ align-items: center;
 
 #displayDiv {
     height: 40%;
-    background-color: green;
+    /* background-color: #D4D4D2; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* background-color: green; */
+}
+
+#infoDisplayDiv{
+    padding: 10px 0px 0px 30px;
+    /* width: 100%; */
+    font-size: 12px;
+    height: 20px;
+    /* background-color: red; */
+}
+
+#numberDisplayDiv{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding: 10px;
+    /* background-color: red; */
 }
 
 #leftSideDiv {
@@ -63,19 +89,34 @@ align-items: center;
     margin: 3px;
 }
 
+/* Text  */
+#value {
+    color: white;
+    font-size: 80px;
+    padding: 0;
+    margin: 0;
+}
+
+
+
 /* Buttons */
 .zeroButton {
     background-color: #505050;
     border: none;
     text-align: left;
     font-size: 18px;
-    font-weight: 500;
+    font-weight: 700;
     padding-left: 23px;
     color: white;
     width: 120px; 
     cursor: pointer;
     height: 55px;
     border-radius: 60px;
+}
+
+.zeroButton:hover{
+    background-color: #3f3f3f;    
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
 }
 
 .topButton {
@@ -85,9 +126,15 @@ align-items: center;
     height: 55px;
     cursor: pointer;
     font-size: 18px;
-    font-weight: 500;
+    font-weight: 700;
     width: 55px;
     border-radius: 100%;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+}
+
+.topButton:hover{
+    background-color: #c7c7c7;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
 }
 
 .rightButton {
@@ -97,9 +144,15 @@ align-items: center;
     height: 55px;
     cursor: pointer;
     font-size: 18px;
-    font-weight: 500;
+    font-weight: 700;
     width: 55px;
     border-radius: 100%;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+}
+
+.rightButton:hover{
+    background-color: #ec8b02;    
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
 }
 
 .numberButton {
@@ -109,9 +162,15 @@ align-items: center;
     height: 55px;
     cursor: pointer;
     font-size: 18px;
-    font-weight: 500;
+    font-weight: 700;
     width: 55px;
     border-radius: 100%;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+}
+
+.numberButton:hover{
+    background-color: #3f3f3f;    
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
 }
 
 #topButtons {
@@ -125,29 +184,8 @@ align-items: center;
 }
 
 
-#calculator {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    background-color: #fafafa;
-    width: 230px;
-    height: 400px;
-}
+
   
-  #numberButton {
-    width: 50px;
-    height: 50px;
-    background: #fafafa
-  }
 
-#numberBtnDiv {
-    height: 80%;
-    display: flex;
-    background-color: aliceblue;
-    flex-wrap: wrap;
-}
 
-#value {
-    color: red
-}
 
