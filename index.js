@@ -13,11 +13,13 @@ class Calculator {
   }
   handleOperator(val) {
     this.equate();
+    if (this.operator === "") {
+      this.setDisplay(` ${val} `);
+    }
     this.operator = val;
   }
   roundValue(val) {
-    console.log(val);
-    return Math.round((val * 100) / 100);
+    return String(val % 1 != 0 ? val.toFixed(2) : val);
   }
   invertNumber() {
     this.total *= -1;
@@ -29,7 +31,6 @@ class Calculator {
   }
   equate() {
     if (this.currentNumber !== "") {
-      console.log("op", this.operator);
       let calculatedVal;
       let cur = +this.currentNumber;
       let total = +this.total;
@@ -51,6 +52,7 @@ class Calculator {
           this.total = this.roundValue(calculatedVal);
           break;
       }
+      this.operator = "";
       this.currentNumber = "";
     }
   }
@@ -63,80 +65,69 @@ class Calculator {
 }
 const calculator = new Calculator();
 
-//Functionality
-/*
-    1) User inputs number
-       - Set display text
-       - Set current number
-    2) User selects an operator
-       - Set display text with operator
-       - Set current number as total value
-    3) User inputs another number 
-       - If total !== 0 we compute based on the operator selected
-       with the new number 
-
-*/
-
 function handleNumberSelect(val) {
   calculator.setDisplay(val);
   calculator.numberSelect(val);
   setDisplayText();
-  console.log(calculator.displayText.length);
-
-  //   console.log(calculator);
 }
 
 function handleOperatorSelect(val) {
-  switch (val) {
-    case "+/-":
-      calculator.invertNumber();
-      break;
-    case "%":
-      calculator.percentageNumber();
-      break;
-    case "AC":
-      handleClear();
-      break;
-    default:
-      calculator.setDisplay(` ${val} `);
-  }
-
-  calculator.handleOperator(val);
-  setDisplayText();
   console.log(calculator);
+  console.log(val === calculator.operator);
+  if (calculator.total !== "") {
+    switch (val) {
+      case "+/-":
+        calculator.invertNumber();
+        break;
+      case "%":
+        calculator.percentageNumber();
+        break;
+      case "AC":
+        handleClear();
+        break;
+      default:
+        calculator.handleOperator(val);
+      // calculator.setDisplay(` ${val} `);
+    }
+
+    setDisplayText();
+    console.log(calculator);
+  }
 }
 
 function handleEquate() {
   calculator.equate();
   setDisplayText();
-  //   console.log(calculator);
 }
 
 // //HTMl selectors
 let displayHTML = document.getElementById("displayText");
 let valueHTML = document.getElementById("value");
 function setDisplayText() {
+  console.log(calculator);
+  if (calculator.total === "") {
+    valueHTML.innerHTML = 0;
+  } else {
+    valueHTML.innerHTML = calculator.total;
+  }
   displayHTML.innerHTML = calculator.displayText;
-  valueHTML.innerHTML = calculator.total;
-  switch (calculator.displayText.length) {
-    case 5:
-      valueHTML.style.fontSize = "60px";
-      break;
-    case 7:
-      valueHTML.style.fontSize = "40px";
-      break;
-    case 15:
-      displayHTML.style.fontSize = "10px";
-      valueHTML.style.fontSize = "20px";
-      break;
-    default:
-      valueHTML.style.fontSize = "80px";
+  console.log(calculator.total.length);
+  const numberLength = calculator.total.length;
+  if (numberLength <= 5) {
+    displayHTML.style.fontSize = "16px";
+    valueHTML.style.fontSize = "80px";
+  } else if (numberLength >= 5 && numberLength < 7) {
+    valueHTML.style.fontSize = "60px";
+  } else if (numberLength >= 7 && numberLength < 15) {
+    valueHTML.style.fontSize = "40px";
+  } else if (numberLength >= 15) {
+    displayHTML.style.fontSize = "10px";
+    valueHTML.style.fontSize = "30px";
   }
 }
 
 function handleClear() {
   calculator.clear();
-  setDisplayText();
 }
 
 function createTime() {
@@ -181,7 +172,6 @@ function createButtons() {
         ? "topButton"
         : "rightButton"
     );
-    // btn.classList.add("numberButton");
     btn.addEventListener("click", function () {
       button.type === "num"
         ? handleNumberSelect(button.title)

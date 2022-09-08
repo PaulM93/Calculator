@@ -17,6 +17,7 @@ p{
 
 #displayText {
     overflow-wrap: anywhere;
+    font-size: 16px;
 }
 
 #container {
