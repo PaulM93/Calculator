@@ -72,8 +72,6 @@ function handleNumberSelect(val) {
 }
 
 function handleOperatorSelect(val) {
-  console.log(calculator);
-  console.log(val === calculator.operator);
   if (calculator.total !== "") {
     switch (val) {
       case "+/-":
@@ -101,14 +99,12 @@ function handleEquate() {
 let displayHTML = document.getElementById("displayText");
 let valueHTML = document.getElementById("value");
 function setDisplayText() {
-  console.log(calculator);
   if (calculator.total === "") {
     valueHTML.innerHTML = 0;
   } else {
     valueHTML.innerHTML = calculator.total;
   }
   displayHTML.innerHTML = calculator.displayText;
-  console.log(calculator.total.length);
   const numberLength = calculator.total.length;
   if (numberLength <= 5) {
     displayHTML.style.fontSize = "16px";
@@ -208,10 +204,18 @@ function hide() {
   loadingDiv.classList.toggle("hide");
   loadingDiv.style.display = "none";
 }
-document.getElementById("onButton").onclick = function () {
-  loadingDiv.classList.toggle("show");
-  let val = 0;
-  setTimeout(loadingBar(val), 1500);
-  setTimeout(hide, 4000);
-  setTimeout(displayContent, 4100);
-};
+let iphoneOn = false;
+function turnOnPhone() {
+  if (!iphoneOn) {
+    loadingDiv.classList.toggle("show");
+    onButton.innerHTML = "Turn off";
+    iphoneOn = true;
+    let val = 0;
+    setTimeout(loadingBar(val), 1500);
+    setTimeout(hide, 4000);
+    setTimeout(displayContent, 4100);
+  } else {
+    onButton.innerHTML = "Turn on";
+    contentDiv.classList.toggle("hide");
+  }
+}
