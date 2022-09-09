@@ -1,12 +1,12 @@
 body {
-    /* background-image: url("./bulbasor.png"); */
     background-image: url("./iphonebg.png");
     font-family: 'Roboto', sans-serif;
     background-position: center;
-    /* background-repeat: no-repeat; */
     height: 100vh;
     width: auto;
-    /* background-color: blue; */
+    padding: 0px;
+    margin: 0px;
+    background-color: blue;
 }
 
 p{
@@ -15,29 +15,103 @@ p{
     color: white;  
 }
 
+/* Heading  */
+#headingDiv{
+    position: absolute; top: 25%; left: 12%
+}
+#heading{
+    font-family: Lora; 
+    font-size: 50px;
+    text-shadow: 2px 2px 10px  rgba(0, 0, 0, .3);
+    /* rgba(0, 0, 0, .3)  */
+}
+
 #displayText {
     overflow-wrap: anywhere;
     font-size: 16px;
 }
 
+
+/* Loading Container  */
+#appleIcon {
+    font-size: 70px;
+    color: white;
+    opacity: 0.6s;
+}
+
+#loadingDiv {
+    display: flex;
+    flex-direction: column;
+    top: 40%;
+    left: 46%;
+    opacity: 0;
+    align-items: center;
+    position: absolute;
+    height: fit-content;
+    width: 120px;
+    transition: opacity .50s ease-in-out;
+    -moz-transition: opacity .50s ease-in-out;
+    -webkit-transition: opacity .50s ease-in-out;
+}
+#loadingDiv.show{
+    opacity: 1;
+}
+#loadingDiv.hide{
+    opacity: 0;
+}
+
+#loadingBar{
+    height: 5px;
+    margin-top: 20px;
+   border-radius: 20px;
+   width: 20px;
+   background-color: #505050;
+   width: 100px;
+}
+
+#loading{
+    height: 100%;
+    background-color: white;
+    border-radius: 20px;
+    width: 0%;
+}
+
+
+
+#contentDiv {
+    height: 100%;
+    opacity: 0;
+    transition: opacity .50s ease-in-out;
+    -moz-transition: opacity .50s ease-in-out;
+    -webkit-transition: opacity .50s ease-in-out;
+}
+#contentDiv.show{
+    opacity: 1;
+}
+
+
+
+
 #container {
 width: 100%;
-height: 100vh;
+max-height: 100vh;
+min-height: 100vh;
 display: flex;
 justify-content: center;
 align-items: center;
   }
 
 #iphone {
-    /* background-color: gray; */
     width: 250px;
+    box-shadow: rgba(0, 0, 0, .5) 15px 28px 30px -18px;
+    border-radius: 45px;
+    padding: 18px;
     display: flex;
     flex-direction: column;
     height: 555px;
 }
 
 #buttonDiv {
-    /* background-color: blue; */
     height: 60%;
     display: flex;
     justify-content: center;
@@ -192,7 +266,57 @@ align-items: center;
 
 
 
+
+
+
+
   
 
 
 
+
+
+
+/* On Button  */
+.onButton {
+  align-self: center;
+  background-color: #fff;
+  background-image: none;
+  position: absolute;
+  left: 65%;
+  top: 37%;
+  background-position: 0 90%;
+  background-repeat: repeat no-repeat;
+  background-size: 4px 3px;
+  border-radius: 15px 225px 255px 15px 15px 255px 225px 15px;
+  border-style: solid;
+  border-width: 2px;
+  box-shadow: rgba(0, 0, 0, .2) 15px 28px 25px -18px;
+  box-sizing: border-box;
+  color: #41403e;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Neucha, sans-serif;
+  font-size: 1rem;
+  line-height: 23px;
+  outline: none;
+  padding: .75rem;
+  text-decoration: none;
+  transition: all 235ms ease-in-out;
+  border-bottom-left-radius: 15px 255px;
+  border-bottom-right-radius: 225px 15px;
+  border-top-left-radius: 255px 15px;
+  border-top-right-radius: 15px 225px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.onButton:hover {
+  box-shadow: rgba(0, 0, 0, .3) 2px 8px 8px -5px;
+  transform: translate3d(0, 2px, 0);
+}
+
+.onButton:focus {
+  box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
+}

@@ -87,11 +87,8 @@ function handleOperatorSelect(val) {
         break;
       default:
         calculator.handleOperator(val);
-      // calculator.setDisplay(` ${val} `);
     }
-
     setDisplayText();
-    console.log(calculator);
   }
 }
 
@@ -181,3 +178,40 @@ function createButtons() {
   });
 }
 createButtons();
+
+function loadingBar(val) {
+  if (val == 0) {
+    val = 1;
+    let elem = document.getElementById("loading");
+    elem.style.width = "0%";
+    let width = 1;
+    let id = setInterval(frame, 20);
+    function frame() {
+      if (width >= 100) {
+        clearInterval(id);
+        val = 0;
+      } else {
+        width++;
+        elem.style.width = width + "%";
+      }
+    }
+  }
+}
+
+let onButton = document.getElementById("onButton");
+let loadingDiv = document.getElementById("loadingDiv");
+let contentDiv = document.getElementById("contentDiv");
+function displayContent() {
+  contentDiv.classList.toggle("show");
+}
+function hide() {
+  loadingDiv.classList.toggle("hide");
+  loadingDiv.style.display = "none";
+}
+document.getElementById("onButton").onclick = function () {
+  loadingDiv.classList.toggle("show");
+  let val = 0;
+  setTimeout(loadingBar(val), 1500);
+  setTimeout(hide, 4000);
+  setTimeout(displayContent, 4100);
+};

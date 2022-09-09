@@ -8,33 +8,63 @@
     <link rel="stylesheet" href="./index.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Lora:wght@500&family=Roboto:wght@400;500&display=swap"
       rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     />
   </head>
   <body>
+
+      
+      
+    </div> 
+    <div id="headingDiv">
+      <h1 id="heading">
+        The Calculator. <br />
+        We all need. <br />
+      </h1>
+      <!-- <h1 style="font-family: Roboto; color: gray">Steve Jobs</h1> -->
+    </div>
+    <button class="onButton" id="onButton">Turn on</button>
     <div id="container">
+      <!-- Iphone Div  -->
       <div id="iphone">
-        <div id="displayDiv">
-          <div id="infoDisplayDiv">
-            <p id="time">2:00</p>
-          </div>
-          <div id="numberDisplayDiv">
-            <p id="displayText">0</p>
-            <p id="value">0</p>
+        <!-- Loading Div  -->
+        <div id="loadingDiv">
+          <i id="appleIcon" class="fa-brands fa-apple"></i>
+          <div id="loadingBar">
+            <div id="loading"></div>
           </div>
         </div>
-        <div id="buttonDiv">
-          <div id="topButtons"></div>
-          <div id="bottomButtons">
-            <button class="zeroButton" onclick="handleNumberSelect('0')">
-              0
-            </button>
-            <button class="numberButton" onclick="handleNumberSelect('.')">
-              .
-            </button>
-            <button class="rightButton" onclick="handleEquate()">=</button>
+        <!-- Content div  -->
+        <div id="contentDiv">
+          <div id="displayDiv">
+            <div id="infoDisplayDiv">
+              <p id="time">2:00</p>
+            </div>
+            <div id="numberDisplayDiv">
+              <p id="displayText">0</p>
+              <p id="value">0</p>
+            </div>
+          </div>
+          <div id="buttonDiv">
+            <div id="topButtons"></div>
+            <div id="bottomButtons">
+              <button class="zeroButton" onclick="handleNumberSelect('0')">
+                0
+              </button>
+              <button class="numberButton" onclick="handleNumberSelect('.')">
+                .
+              </button>
+              <button class="rightButton" onclick="handleEquate()">=</button>
+            </div>
           </div>
         </div>
       </div>
