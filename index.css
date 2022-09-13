@@ -53,12 +53,11 @@ p{
     display: flex;
     flex-direction: column;
     top: 40%;
-    left: 46%;
+    left: 32%;
     opacity: 0;
     align-items: center;
     position: absolute;
     height: fit-content;
-    width: 120px;
     transition: opacity .50s ease-in-out;
     -moz-transition: opacity .50s ease-in-out;
     -webkit-transition: opacity .50s ease-in-out;
@@ -92,6 +91,7 @@ p{
 /* Calculator Container  */
 #iphone {
     width: 250px;
+    position: relative;
     box-shadow: rgba(0, 0, 0, .5) 15px 28px 30px -18px;
     border-radius: 45px;
     padding: 18px;
